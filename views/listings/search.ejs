@@ -1,0 +1,34 @@
+<% layout("/layouts/boilerplate") -%>
+
+
+<h2>Search Results for "<%= query %>"</h2>
+
+<ul>
+  <% if (listings.length === 0) { %>
+    <li>No results found</li>
+  <% } else { %>
+    <% listings.forEach(listing => { %>
+      <div class="listing-card col-6 offset-2 show-card">
+      <h3><b><%= listing.title %></b></h3>
+      <img
+        src="<%=listing.image.url%>"
+        class="card-img-top show-img"
+        alt="listing_image"
+      />
+      <div class="card-body">
+        <p class="card-text">
+          Owned by
+          <i><%= listing.owner.username %></i>
+        </p>
+        <p class="card-text"><%= listing.description %> <br /></p>
+        <p class="card-text">
+          &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") :
+          "N/A" %>
+        </p>
+        <p class="card-text"><%= listing.location %></p>
+        <p class="card-text"><%= listing.country %></p>
+      </div>
+    </div>
+    <% }) %>
+  <% } %>
+</ul>
